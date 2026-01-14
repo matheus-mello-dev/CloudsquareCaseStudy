@@ -1,51 +1,48 @@
 # CloudsquareCaseStudy
 
 1. Overview
-    This project implements a public application intake solution using Salesforce Experience Cloud, composed of:
+
+   This project implements a public application intake solution using Salesforce Experience Cloud, composed of:
         A public Lightning Web Component (LWC) for manual submissions
         A public Apex REST webhook for external system integrations
         A shared Apex service layer that centralizes business logic
     
-    Depending on whether an existing Account is found, the application creates either:
+   Depending on whether an existing Account is found, the application creates either:
         a Lead, or an Opportunity
 
-2. Setup Instructions
-    Apex Deployment
-    
-    Deploy the following Apex classes:
-        ApplicationFormController
-        ApplicationFormDTO
-        ApplicationFormResult
-        ApplicationFormWebhook
-        ApplicationProcessingService
+3. Setup Instructions
+   Apex Deployment
+   Deploy the following Apex classes:
+       ApplicationFormController
+       ApplicationFormDTO
+       ApplicationFormResult
+       ApplicationFormWebhook
+       ApplicationProcessingService
+   Test classes:
+       ApplicationFormControllerTest
+       ApplicationFormWebhookTest
 
-    Test classes:
-        ApplicationFormControllerTest
-        ApplicationFormWebhookTest
+   Ensure the custom field Application_Source__c exists on:
+       Lead
+       Opportunity
+   Ensure the custom field Federal_Tax_Id__c exists on:
+       Account
+       Lead
 
-    Ensure the custom field Application_Source__c exists on:
-        Lead
-        Opportunity
+   Community Configuration
+       Create or use an Experience Cloud site
+       Enable public (guest) access
+       Add the applicationForm LWC to a public page
+   Grant Guest User access to:
+       Apex classes
+       Required objects and fields (Lead, Opportunity, Account)
 
-    Ensure the custom field Federal_Tax_Id__c exists on:
-        Account
-        Lead
+   REST Endpoint
+       The webhook is exposed publicly at:
+           /services/apexrest/external/applications
+       No authentication is required.
 
-    Community Configuration
-        Create or use an Experience Cloud site
-        Enable public (guest) access
-        Add the applicationForm LWC to a public page
-
-    Grant Guest User access to:
-        Apex classes
-        Required objects and fields (Lead, Opportunity, Account)
-
-    REST Endpoint
-        The webhook is exposed publicly at:
-            /services/apexrest/external/applications
-        No authentication is required.
-
-3. How It Works
+5. How It Works
     Community Form Flow
         User submits the public form
         LWC validates required fields
@@ -87,7 +84,7 @@
             "message": "Application processed successfully"
             }
 
-4. Assumptions Made
+6. Assumptions Made
     Guest access is allowed for both Community and Apex REST
     Matching logic prioritizes:
         Federal Tax ID
@@ -96,7 +93,7 @@
     Attachments are not required
     Requests are processed one at a time (no bulk processing)
 
-5. Testing
+7. Testing
     Full test coverage is provided for:
         Community submissions
         Webhook submissions
@@ -104,7 +101,7 @@
         Error scenarios
     No production data is accessed during tests
 
-6. Architecture Highlights
+8. Architecture Highlights
     Single service layer for all business rules
     No duplicated logic
     Source tracking via Application_Source__c
