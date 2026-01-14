@@ -1,13 +1,13 @@
 # CloudsquareCaseStudy
 
 1. Overview
-This project implements a public application intake solution using Salesforce Experience Cloud, composed of:
-    A public Lightning Web Component (LWC) for manual submissions
-    A public Apex REST webhook for external system integrations
-    A shared Apex service layer that centralizes business logic
-
-Depending on whether an existing Account is found, the application creates either:
-    a Lead, or an Opportunity
+    This project implements a public application intake solution using Salesforce Experience Cloud, composed of:
+        A public Lightning Web Component (LWC) for manual submissions
+        A public Apex REST webhook for external system integrations
+        A shared Apex service layer that centralizes business logic
+    
+    Depending on whether an existing Account is found, the application creates either:
+        a Lead, or an Opportunity
 
 2. Setup Instructions
     Apex Deployment
@@ -43,7 +43,6 @@ Depending on whether an existing Account is found, the application creates eithe
     REST Endpoint
         The webhook is exposed publicly at:
             /services/apexrest/external/applications
-
         No authentication is required.
 
 3. How It Works
@@ -73,7 +72,6 @@ Depending on whether an existing Account is found, the application creates eithe
             },
             "annualRevenue": 500000
             }
-
         Processing
         The JSON body is parsed by ApplicationFormWebhook
         The Request is normalized into a Map<String, Object>
@@ -81,7 +79,6 @@ Depending on whether an existing Account is found, the application creates eithe
         Records are created following the same rules as the Community form
         Records created through the webhook are tagged with:
             Application_Source__c = 'Webhook'
-
         Response Example:
             {
             "success": true,
