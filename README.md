@@ -118,7 +118,7 @@
            Lead and Opportunity creation
            Error scenarios
    
-    No production data is accessed during tests
+    No org data is accessed during tests
 
 6. Architecture Highlights
    
