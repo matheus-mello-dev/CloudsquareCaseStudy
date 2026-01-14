@@ -1,0 +1,75 @@
+<template>
+    <lightning-card title="Application Form">
+        <div class="slds-p-around_medium">
+            <lightning-spinner
+                if:true={isLoading}
+                alternative-text="Submitting"
+                size="medium">
+            </lightning-spinner>
+            <lightning-input
+                label="Company Name"
+                name="companyName"
+                value={form.companyName}
+                required
+                oninput={handleChange}>
+            </lightning-input>
+            <lightning-input
+                label="Federal Tax ID"
+                name="taxId"
+                value={form.taxId}
+                required
+                oninput={handleChange}>
+            </lightning-input>
+            <lightning-input
+                label="Contact First Name"
+                name="firstName"
+                value={form.firstName}
+                required
+                oninput={handleChange}>
+            </lightning-input>
+            <lightning-input
+                label="Contact Last Name"
+                name="lastName"
+                value={form.lastName}
+                required
+                oninput={handleChange}>
+            </lightning-input>
+            <lightning-input
+                label="Email"
+                type="email"
+                name="email"
+                value={form.email}
+                required
+                oninput={handleChange}>
+            </lightning-input>
+            <lightning-input
+                label="Phone"
+                type="tel"
+                name="phone"
+                value={form.phone}
+                required
+                oninput={handleChange}>
+            </lightning-input>
+            <lightning-input
+                label="Annual Revenue"
+                type="number"
+                name="annualRevenue"
+                value={form.annualRevenue}
+                oninput={handleChange}>
+            </lightning-input>
+            <div class="slds-m-top_medium">
+                <lightning-button
+                    label="Submit Application"
+                    variant="brand"
+                    onclick={handleSubmit}
+                    disabled={isLoading}>
+                </lightning-button>
+            </div>
+            <template if:true={resultMessage}>
+                <div class={resultClass}>
+                    {resultMessage}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
